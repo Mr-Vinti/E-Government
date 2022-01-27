@@ -1,0 +1,107 @@
+<div class="wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex="80%" fxFlex.lt-md="100%">
+    <mat-card-header>Paap Table</mat-card-header>
+    <mat-card-content>
+      <mat-table
+        *ngIf="this.dataSource.data"
+        class="tableLayout"
+        matSort
+        [dataSource]="dataSource"
+      >
+        <ng-container matColumnDef="paapId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >ID</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="ID">
+            {{ row.paapId }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="paapCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Code</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="Code">
+            {{ row.paapCode }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="paapName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="Name">
+            {{ row.paapName }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="paapYear">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Year</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="Year">
+            {{ row.paapYear }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="paapVersion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Version</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="Version">
+            {{ row.paapVersion }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="caCIF">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >CA CIF</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="CA CIF">
+            {{ row.caCIF }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="caName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >CA Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="CA Name">
+            {{ row.caName }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="publicationDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Publication Date
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Publication Date">
+            {{ row.publicationDate | date: 'dd-MM-yyyy hh:mm:ss':'UTC' }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="paapStateName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >State Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row" data-label="State Name">
+            {{ row.paapStateName }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          (click)="openPaapDetails(row.paapId)"
+        ></mat-row>
+      </mat-table>
+      <mat-paginator
+        #paginator
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 25, 50, 100]"
+        showFirstLastButtons
+        [style.display]="this.dataSource.data ? 'block' : 'none'"
+      ></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
